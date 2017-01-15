@@ -1,0 +1,19 @@
+{
+  "name": "asteroids",
+  "version": "1.0.0",
+  "description": "This game was created Doug McInnes. His code can be found [here](https://github.com/dmcinnes/HTML5-Asteroids), and you can play his version of the game online at his website [here](http://dougmcinnes.com/2010/05/12/html-5-asteroids/).",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekevinscott/asteroids.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thekevinscott/asteroids/issues"
+  },
+  "homepage": "https://github.com/thekevinscott/asteroids#readme"
+}
