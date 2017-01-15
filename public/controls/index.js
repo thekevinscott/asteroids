@@ -1,3 +1,5 @@
+let FRAMES_PER_SECOND = 30;
+
 const getControls = () => {
   return [
     'space',
@@ -11,8 +13,8 @@ const getControls = () => {
   }, {});
 };
 
-const FRAMES_PER_SECOND = 3;
 $(function() {
+  const frameRate = $('.frame-rate');
   const output = $('.output tbody');
   const start = new Date();
   const frame = () => {
@@ -35,5 +37,17 @@ $(function() {
                   `);
     setTimeout(frame, 1000 / FRAMES_PER_SECOND);
   }
+
+  for (let i=1; i <= 60; i++) {
+    if (i === FRAMES_PER_SECOND) {
+      frameRate.append(`<option selected>${i}</option>`);
+    } else {
+      frameRate.append(`<option>${i}</option>`);
+    }
+  }
+  frameRate.change((e) => {
+    FRAMES_PER_SECOND = frameRate.val();
+  });
+
   frame();
 });
