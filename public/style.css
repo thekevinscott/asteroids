@@ -15,7 +15,12 @@ html, body {
 
 canvas {
   display:block;
-  background: #000;
+  position: absolute;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  left: 50%;
+  top: 50%;
+  margin-left: -400px;
+  margin-top: -300px;
 }
 
 .game-container {
@@ -25,6 +30,8 @@ canvas {
 
 .game {
   flex: 1;
+  position: relative;
+  background: #555;
 }
 
 .output {
@@ -33,7 +40,7 @@ canvas {
   flex-direction: column;
   background: #333;
   color: white;
-  border-left: 1px solid #555;
+  border-left: 1px solid #000;
   display: flex;
   overflow: hidden;
 }
