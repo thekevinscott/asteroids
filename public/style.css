@@ -38,6 +38,11 @@ canvas {
   overflow: hidden;
 }
 
+.hide-controls .output {
+  display: none;
+  flex-basis: 0;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

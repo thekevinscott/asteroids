@@ -1,4 +1,9 @@
-let FRAMES_PER_SECOND = 30;
+let FRAMES_PER_SECOND = CONSTANTS.controls.frames_per_second;
+if (CONSTANTS.controls !== '1') {
+  $('body').addClass('hide-controls');
+}
+
+console.log('here we are', CONSTANTS);
 
 const getControls = () => {
   return [
@@ -50,4 +55,5 @@ $(function() {
   });
 
   frame();
+
 });

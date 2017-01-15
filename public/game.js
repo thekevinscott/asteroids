@@ -3,6 +3,7 @@
 // Copyright (c) 2010 Doug McInnes
 //
 
+console.log('** Welcome to Asteroids');
 KEY_CODES = {
   32: 'space',
   37: 'left',
