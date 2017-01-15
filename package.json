@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/thekevinscott/asteroids/issues"
   },
-  "homepage": "https://github.com/thekevinscott/asteroids#readme"
+  "homepage": "https://github.com/thekevinscott/asteroids#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
