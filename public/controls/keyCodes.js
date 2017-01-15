@@ -17,17 +17,43 @@ for (code in KEY_CODES) {
 }
 
 $(function() {
-  $(window).keydown(function (e) {
-    KEY_STATUS.keyDown = true;
-    if (KEY_CODES[e.keyCode]) {
-      e.preventDefault();
-      KEY_STATUS[KEY_CODES[e.keyCode]] = true;
+  if (CONSTANTS.remote !== 1) {
+    $(window).keydown(function (e) {
+      KEY_STATUS.keyDown = true;
+      if (KEY_CODES[e.keyCode]) {
+        e.preventDefault();
+        KEY_STATUS[KEY_CODES[e.keyCode]] = true;
+      }
+    }).keyup(function (e) {
+      KEY_STATUS.keyDown = false;
+      if (KEY_CODES[e.keyCode]) {
+        e.preventDefault();
+        KEY_STATUS[KEY_CODES[e.keyCode]] = false;
+      }
+    });
+  } else {
+    const canvas = $('canvas');
+
+    function sendCameraData() {
+      const timeout = parseInt(1000 / FRAMES_PER_SECOND);
+      const dataURL = canvas[0].toDataURL();
+
+      pythonSocket.emit('camera', {
+        time: (new Date()).getTime(),
+        foo: 'bar',
+        //image: dataURL,
+      });
+
+      setTimeout(sendCameraData, timeout);
     }
-  }).keyup(function (e) {
-    KEY_STATUS.keyDown = false;
-    if (KEY_CODES[e.keyCode]) {
-      e.preventDefault();
-      KEY_STATUS[KEY_CODES[e.keyCode]] = false;
-    }
-  });
+
+    pythonSocket.on('controls', function(controls){
+      console.log('hey now', controls);
+      Object.keys(controls).map(key => {
+        KEY_STATUS[key] = controls[key] === 1 ? true : false;
+      });
+    });
+
+    sendCameraData();
+  }
 });

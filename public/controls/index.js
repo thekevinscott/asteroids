@@ -1,5 +1,5 @@
 var FRAMES_PER_SECOND = CONSTANTS.frames_per_second;
-if (CONSTANTS.controls !== '1') {
+if (`${CONSTANTS.controls}` !== '1') {
   $('body').addClass('hide-controls');
 }
 
@@ -16,12 +16,13 @@ function getControls() {
 };
 
 $(function() {
+  let playing = false;
   const frameRate = $('.frame-rate');
   const output = $('.output tbody');
-  const start = new Date();
+  const startTime = new Date();
   function frame() {
     const d = new Date();
-    const time = (d.getTime() - start.getTime()) / 1000;
+    const time = (d.getTime() - startTime.getTime()) / 1000;
     const controls = getControls();
 
     output.prepend(
@@ -33,7 +34,10 @@ $(function() {
         '<td>' + controls.up + '</td>' +
       '</tr>'
     );
-    setTimeout(frame, 1000 / FRAMES_PER_SECOND);
+
+    if (playing) {
+      setTimeout(frame, 1000 / FRAMES_PER_SECOND);
+    }
   }
 
   for (var i=1; i <= 60; i++) {
@@ -48,5 +52,15 @@ $(function() {
     FRAMES_PER_SECOND = frameRate.val();
   });
 
-  frame();
+  function start() {
+    playing = true;
+    frame();
+  }
+
+  function end() {
+    playing = false;
+  }
+
+  Game.addListener('start', start);
+  Game.addListener('end_game', end);
 });

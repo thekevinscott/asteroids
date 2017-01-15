@@ -41,6 +41,10 @@
     <script src="game/index.js"></script>
     <script src="controls/index.js"></script>
     <script src="monitor/index.js"></script>
-
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var nodeSocket = io();
+      var pythonSocket = io('http://localhost:9000');
+    </script>
   </body>
 </html>

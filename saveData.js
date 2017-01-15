@@ -19,7 +19,6 @@ function saveJSON(name, time, controls) {
   rows.push(row.join(','));
 
   const location = `${name}/data.csv`;
-  console.log(location);
   save(location, JSON.stringify(rows));
 }
 
