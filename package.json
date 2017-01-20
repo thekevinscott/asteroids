@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/thekevinscott/asteroids#readme",
   "dependencies": {
+    "aws-s3-zipper": "^1.0.1",
     "aws-sdk": "^2.7.21",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
