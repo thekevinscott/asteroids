@@ -1,9 +1,21 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3();
-const Bucket = 'deep-asteroids';
 const moment = require('moment');
+const s3Zip = require('s3-zip')
 
-const myKey = 'foobar';
+const Bucket = 'deep-asteroids';
+const Region = 'US Standard'
+/*
+const S3Zipper = require ('aws-s3-zipper');
+ 
+const config = {
+    accessKeyId: "XXXX",
+    secretAccessKey: "XXXX",
+    region: "us-west-2",
+    bucket: 'XXX'
+};
+var zipper = new S3Zipper(config);
+*/
 
 s3.createBucket({
   Bucket,
@@ -26,7 +38,7 @@ const request = (method, params) => {
 };
 
 module.exports = {
-  listObjects: () => {
+  listObjects: (defaultParams = {}) => {
     return request(s3.listObjects, {
       Bucket,
       Delimiter: '/',
@@ -34,7 +46,6 @@ module.exports = {
       return data.CommonPrefixes.map(f => {
         const name = f.Prefix.split('/').shift();
         const date = new Date(parseInt(name));
-        console.log(date);
 
         return {
           date: moment(date).format('MMMM Do, h:mm:ss a'),
@@ -42,6 +53,26 @@ module.exports = {
         };
       });
     });
+  },
+  downloadObjects: (folder) => {
+    /*
+    const output = fs.createWriteStream(join(__dirname, 'use-s3-zip.zip'))
+
+    var filesArray = []
+    this.listObjects(
+
+    var files = s3.listObjects(params).createReadStream()
+    s3Zip.archive({
+      region: Region,
+      bucket: Bucket,
+    }, folder, [
+      file1,
+      file2,
+      file3,
+      file4
+    ])
+    .pipe(output)
+    */
   },
   save: (Key, Body) => {
     const params = {

@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/admin', admin);
+admin(app);
 
 app.post('/save', (req, res) => {
   console.log((new Date()).getTime() - req.body.time);
