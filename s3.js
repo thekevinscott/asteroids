@@ -33,7 +33,7 @@ module.exports = {
     }).then(data => {
       return data.CommonPrefixes.map(f => {
         const name = f.Prefix.split('/').shift();
-        const date = new Date(name);
+        const date = new Date(parseInt(name));
         console.log(date);
 
         return {

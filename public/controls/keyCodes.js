@@ -17,7 +17,7 @@ for (code in KEY_CODES) {
 }
 
 $(function() {
-  if (CONSTANTS.remote !== 1) {
+  if (`${CONSTANTS.remote}` !== '1') {
     $(window).keydown(function (e) {
       KEY_STATUS.keyDown = true;
       if (KEY_CODES[e.keyCode]) {
@@ -38,17 +38,17 @@ $(function() {
       const timeout = parseInt(1000 / FRAMES_PER_SECOND);
       const dataURL = canvas[0].toDataURL();
 
+      const time = (new Date()).getTime();
+
       pythonSocket.emit('camera', {
-        time: (new Date()).getTime(),
-        foo: 'bar',
-        //image: dataURL,
+        time,
+        image: dataURL,
       });
 
       setTimeout(sendCameraData, timeout);
     }
 
     pythonSocket.on('controls', function(controls){
-      console.log('hey now', controls);
       Object.keys(controls).map(key => {
         KEY_STATUS[key] = controls[key] === 1 ? true : false;
       });
