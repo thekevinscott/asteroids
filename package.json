@@ -27,6 +27,7 @@
     "s3": "^4.4.0",
     "s3-zip": "0.0.13",
     "socket.io": "^1.7.2",
-    "socket.io-client": "^1.7.2"
+    "socket.io-client": "^1.7.2",
+    "xml-stream": "^0.4.5"
   }
 }
